@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 import enums.Levels;
@@ -45,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
         this.medium = (RadioButton) findViewById(R.id.medium);
         this.hard = (RadioButton) findViewById(R.id.hard);
         this.useRandom = (CheckBox) findViewById(R.id.random);
-        Button startButton = (Button) findViewById(R.id.start);
+        ImageButton startButton = (ImageButton) findViewById(R.id.start);
         startButton.setOnClickListener(startButtonListener);
         useRandom.setChecked(Properties.get().isUseRandom());
         if (Properties.get().getLevel() == Levels.hard) {

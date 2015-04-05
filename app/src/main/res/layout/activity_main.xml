@@ -86,12 +86,14 @@
         android:layout_alignParentTop="false"
         android:layout_below="@+id/options.layout">
 
-        <Button
+        <ImageButton
             android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/main_start_button_text" />
+            android:contentDescription="@string/main_start_button_text"
+            android:text="@string/main_start_button_text"
+            android:src="@drawable/epee_medium" />
     </FrameLayout>
 
 </RelativeLayout>
