@@ -1,17 +1,59 @@
 package pish.fencing_helper;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+
+import enums.Levels;
+import properties.Properties;
 
 
 public class MainActivity extends ActionBarActivity {
+    RadioButton medium;
+    RadioButton hard;
+    CheckBox useRandom;
+
+    public View.OnClickListener startButtonListener = new View.OnClickListener() {
+        public void onClick(View v) {
+
+
+            Levels lvlOfDifficulty = Levels.simple;
+            if (medium.isChecked())
+                lvlOfDifficulty = Levels.medium;
+            if (hard.isChecked())
+                lvlOfDifficulty = Levels.hard;
+
+            Properties.get().setLevel(lvlOfDifficulty);
+            Properties.get().setUseRandom(useRandom.isChecked());
+
+            Intent actionIntent = new Intent(v.getContext(), NumbersDisplay.class);
+            startActivity(actionIntent);
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.medium = (RadioButton) findViewById(R.id.medium);
+        this.hard = (RadioButton) findViewById(R.id.hard);
+        this.useRandom = (CheckBox) findViewById(R.id.random);
+        Button startButton = (Button) findViewById(R.id.start);
+        startButton.setOnClickListener(startButtonListener);
+        useRandom.setChecked(Properties.get().isUseRandom());
+        if (Properties.get().getLevel() == Levels.hard) {
+            hard.setChecked(true);
+            return;
+        }
+        if (Properties.get().getLevel() == Levels.medium)
+            medium.setChecked(true);
     }
 
 
