@@ -18,7 +18,7 @@
             android:id="@+id/positionText"
             android:textIsSelectable="false"
             android:textSize="@dimen/abc_text_size_display_4_material"
-            android:text="Go!"
+            android:text="@string/numbers_position_label_text"
             android:layout_gravity="center" />
 
     </FrameLayout>
@@ -28,25 +28,22 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
+            android:text="@string/numbers_range_label_text"
             android:id="@+id/numbers"
             android:layout_gravity="center" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back"
+            android:text="@string/numbers_back_button_text"
             android:id="@+id/backButton"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_gravity="center_horizontal|bottom" />
     </LinearLayout>
 
 </RelativeLayout>
