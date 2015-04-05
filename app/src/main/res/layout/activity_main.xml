@@ -93,7 +93,8 @@
             android:layout_gravity="center"
             android:contentDescription="@string/main_start_button_text"
             android:text="@string/main_start_button_text"
-            android:src="@drawable/epee_medium" />
+            android:src="@drawable/epee_medium"
+            android:onClick="onClick" />
     </FrameLayout>
 
 </RelativeLayout>

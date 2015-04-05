@@ -35,6 +35,13 @@ public class NumbersDisplay extends ActionBarActivity {
         return timeInterval;
     }
 
+    public void onClick(View view) {
+        stopTimer();
+        Intent actionIntent = new Intent(view.getContext(), MainActivity.class);
+        startActivity(actionIntent);
+        finish();
+    }
+
     private class ActionTask extends TimerTask {
         @Override
         public void run() {
@@ -47,15 +54,6 @@ public class NumbersDisplay extends ActionBarActivity {
         }
     }
 
-    public View.OnClickListener backButtonListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            stopTimer();
-            Intent actionIntent = new Intent(v.getContext(), MainActivity.class);
-            startActivity(actionIntent);
-            finish();
-        }
-    };
-
     public void doSomething() {
         String position = Magic.getNextPosition().toString();
         numberImage.setText(position);
@@ -67,7 +65,7 @@ public class NumbersDisplay extends ActionBarActivity {
             player.start();
             stopTimer();
             while (player.isPlaying()) {
-               Thread.sleep(100);
+                Thread.sleep(100);
             }
             player.release();
 
@@ -84,8 +82,6 @@ public class NumbersDisplay extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers_display);
-        Button back = (Button) findViewById(R.id.backButton);
-        back.setOnClickListener(backButtonListener);
         this.numberImage = (TextView) findViewById(R.id.positionText);
         this.info = (TextView) findViewById(R.id.numbers);
         initTimer();

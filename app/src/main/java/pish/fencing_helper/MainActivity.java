@@ -18,43 +18,32 @@ import properties.Properties;
 public class MainActivity extends ActionBarActivity {
     RadioButton medium;
     RadioButton hard;
+    RadioButton simple;
     CheckBox useRandom;
-
-    public View.OnClickListener startButtonListener = new View.OnClickListener() {
-        public void onClick(View v) {
-
-
-            Levels lvlOfDifficulty = Levels.simple;
-            if (medium.isChecked())
-                lvlOfDifficulty = Levels.medium;
-            if (hard.isChecked())
-                lvlOfDifficulty = Levels.hard;
-
-            Properties.get().setLevel(lvlOfDifficulty);
-            Properties.get().setUseRandom(useRandom.isChecked());
-
-            Intent actionIntent = new Intent(v.getContext(), NumbersDisplay.class);
-            startActivity(actionIntent);
-            finish();
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         this.medium = (RadioButton) findViewById(R.id.medium);
         this.hard = (RadioButton) findViewById(R.id.hard);
+        this.simple = (RadioButton) findViewById(R.id.simple);
+
         this.useRandom = (CheckBox) findViewById(R.id.random);
-        ImageButton startButton = (ImageButton) findViewById(R.id.start);
-        startButton.setOnClickListener(startButtonListener);
         useRandom.setChecked(Properties.get().isUseRandom());
-        if (Properties.get().getLevel() == Levels.hard) {
-            hard.setChecked(true);
-            return;
+
+        switch (Properties.get().getLevel())
+        {
+           case simple:
+               simple.setChecked(true);
+               break;
+           case medium:
+               medium.setChecked(true);
+               break;
+           default:
+               hard.setChecked(true);
         }
-        if (Properties.get().getLevel() == Levels.medium)
-            medium.setChecked(true);
     }
 
 
@@ -78,5 +67,20 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View view) {
+        Levels lvlOfDifficulty = Levels.simple;
+        if (medium.isChecked())
+            lvlOfDifficulty = Levels.medium;
+        if (hard.isChecked())
+            lvlOfDifficulty = Levels.hard;
+
+        Properties.get().setLevel(lvlOfDifficulty);
+        Properties.get().setUseRandom(useRandom.isChecked());
+
+        Intent actionIntent = new Intent(view.getContext(), NumbersDisplay.class);
+        startActivity(actionIntent);
+        finish();
     }
 }
